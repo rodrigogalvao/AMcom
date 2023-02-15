@@ -12,8 +12,8 @@ pipeline {
           steps {
             script{                               
                     dir("node-project") {
-                        dockerImage = docker.build "portalapp:${BRANCH_NAME}"
-                                  
+                        dockerImage = docker.build "localhost:32000/portalapp:${BRANCH_NAME}"
+                            dockerImage.push()                                                      
                     }
                 }
           }
