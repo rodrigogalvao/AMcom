@@ -11,7 +11,7 @@ pipeline {
           when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } }
           steps {
             script{ 
-                 microk8s kubectl get nodes 
+                 sh "kubectl get nodes" 
             }
           }
         }
