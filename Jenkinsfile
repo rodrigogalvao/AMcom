@@ -21,7 +21,7 @@ pipeline {
             when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } } 
                 steps {
             script{ 
-                 microk8s kubectl get pods -n --all-namespaces 
+                 sh "kubectl get pods -n --all-namespaces" 
             }
           }
         } 
