@@ -4,6 +4,8 @@ RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
 WORKDIR /home/node/app
 
+RUN npm init -y
+
 RUN npm install express redis
 
 COPY . .
