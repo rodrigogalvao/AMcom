@@ -1,20 +1,33 @@
 pipeline {
      agent {
-      node { mestre 'dotnet-5-rc' }
+      node { label 'mestre' }
            }
            options {
       timestamps ()
-      buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
-      disableConcurrentBuilds()
-      skipDefaultCheckout()
-    }
+      
+           }
     stages {
         stage('CheckOut') {            
             steps { checkout scm }            
         }
+    }
+}
         
         stage('Build') {
-          when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } } 
+          when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } }
+          steps {
+            script{ 
+                 microk8s kubectl get nodes 
+            }
+          }
+        }
+            
        
         stage('Deploy'){
-            when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } }   
+            when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } } 
+                steps {
+            script{ 
+                 microk8s kubectl get pods -n --all-namespaces 
+            }
+          }
+        } 
