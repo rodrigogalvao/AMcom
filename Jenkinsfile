@@ -1,23 +1,17 @@
 pipeline {
-     agent {
-      node { label 'mestre' }
-           }
-           options {
-      timestamps ()
-      
-           }
-    stages {
+     agent any
+           
+      stages {
         stage('CheckOut') {            
             steps { checkout scm }            
         }
-    }
-}
+    
         
         stage('Build') {
           when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } }
           steps {
             script{ 
-                 microk8s kubectl get nodes 
+                 sh "kubectl get nodes" 
             }
           }
         }
@@ -27,7 +21,9 @@ pipeline {
             when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } } 
                 steps {
             script{ 
-                 microk8s kubectl get pods -n --all-namespaces 
+                 sh "kubectl get pods -n --all-namespaces" 
             }
           }
         } 
+      }
+}
