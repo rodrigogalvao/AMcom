@@ -1,4 +1,7 @@
 pipeline {
+  environment {
+      namespace =  env.BRANCH_NAME.toLowerCase()
+  }
      agent any
            
       stages {
@@ -12,7 +15,7 @@ pipeline {
           steps {
             script{                               
                     dir("node-project") {
-                        dockerImage = docker.build "localhost:32000/portalapp:${BRANCH_NAME}"
+                        dockerImage = docker.build "localhost:32000/portalapp:${env.namespace}"
                             dockerImage.push()                                                      
                     }
                 }
@@ -24,7 +27,7 @@ pipeline {
             when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } } 
                 steps {
             script{ 
-                 sh "kubectl get pods -n --all-namespaces" 
+                 sh "kubectl rollout restart deployment/deploy-portalapp -n ${env.namespace}" 
             }
           }
         } 
