@@ -3,7 +3,7 @@ const redis = require('redis');
 const app = express();
 
 
-const HOST = "0.0.0.0"
+const HOST = "0.0.0.0";
 
 // Cria uma nova instância do cliente Redis
 const client = redis.createClient({
