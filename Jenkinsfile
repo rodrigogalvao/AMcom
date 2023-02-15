@@ -10,9 +10,12 @@ pipeline {
         stage('Build') {
           when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } }
           steps {
-            script{ 
-                 sh "kubectl get nodes" 
-            }
+            script{                               
+                    dir("node-project") {
+                        dockerImage = docker.build "portalapp:${BRANCH_NAME}"
+                                  
+                    }
+                }
           }
         }
             
