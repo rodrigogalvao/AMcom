@@ -1,15 +1,11 @@
 pipeline {
      agent any
-           options {
-      timestamps ()      
-           }
            
-    stages {
+      stages {
         stage('CheckOut') {            
             steps { checkout scm }            
         }
-    }
-
+    
         
         stage('Build') {
           when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } }
@@ -29,4 +25,5 @@ pipeline {
             }
           }
         } 
+      }
 }
