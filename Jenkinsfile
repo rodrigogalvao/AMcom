@@ -1,7 +1,5 @@
 pipeline {
-     agent {
-      node { label 'mestre' }
-           }
+     agent any
            options {
       timestamps ()
       
