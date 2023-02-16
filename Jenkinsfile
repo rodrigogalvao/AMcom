@@ -27,7 +27,7 @@ pipeline {
             when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } } 
                 steps {
             script{ 
-                 sh "microk8s kubectl rollout restart deployment/deploy-portalapp -n ${env.namespace}" 
+                 sh "kubectl rollout restart deployment/deploy-portalapp -n ${env.namespace}" 
             }
           }
         } 
