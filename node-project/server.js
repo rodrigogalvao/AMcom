@@ -71,7 +71,6 @@ app.get('/', (req, res) => {
     <body>
       <div class="container">
         <div class="image-container">
-          <img src="https://cdn.icon-icons.com/icons2/67/PNG/128/html5_icon-icons.com_61187.png" alt="HTML5">
         </div>
         <h1>Formulário</h1>
         <form action="/" method="post">
@@ -112,18 +111,61 @@ app.get('/consulta', (req, res) => {
     }
     const listaNomes = nomes.map(nome => `<li>${nome}</li>`).join('');
     const html = `
-      <html>
-        <head>
-          <title>Consulta</title>
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        </head>
-        <body>
-          <div class="container">
-            <h1>Consulta</h1>
-            <ul>${listaNomes}</ul>
-          </div>
-        </body>
-      </html>
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Consulta</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <style>
+          body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+          }
+          .container {
+            margin-top: 50px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+          }
+          h1 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 30px;
+          }
+          ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+          }
+          li {
+            background-color: #e9ecef;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+          }
+          li:hover {
+            background-color: #ced4da;
+            cursor: pointer;
+          }
+          a {
+            color: #343a40;
+            text-decoration: none;
+          }
+          a:hover {
+            text-decoration: underline;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <h1>Consulta</h1>
+          <ul>
+            ${listaNomes}
+          </ul>
+        </div>
+      </body>
+    </html>
     `;
     res.send(html);
   });
