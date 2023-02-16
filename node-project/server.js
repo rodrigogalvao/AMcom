@@ -1,39 +1,58 @@
 const express = require('express');
-const redis = require('redis');
 const bodyParser = require('body-parser');
+const redis = require('redis');
 
 const app = express();
 const client = redis.createClient({
-    host: 'redis',
-    port: 6379
+  host: 'redis',
+  port: 6379
 });
 
-client.on('connect', function() {
-    console.log('Conectado ao Redis...');
-});
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({extended: true}));
-
-// Rota principal
 app.get('/', (req, res) => {
-    res.render('index');
+  res.send(`
+    <html>
+      <head>
+        <title>Formulário</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      </head>
+      <body>
+        <div class="container">
+          <h1>Formulário</h1>
+          <form action="/" method="post">
+            <div class="form-group">
+              <label for="inputNome">Nome:</label>
+              <input type="text" class="form-control" id="inputNome" name="nome" placeholder="Digite seu nome">
+            </div>
+            <div class="form-group">
+              <label for="inputSobrenome">Sobrenome:</label>
+              <input type="text" class="form-control" id="inputSobrenome" name="sobrenome" placeholder="Digite seu sobrenome">
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
+        </div>
+      </body>
+    </html>
+  `);
 });
 
-// Rota para processar o formulário
 app.post('/', (req, res) => {
-    const first_name = req.body.first_name;
-    const last_name = req.body.last_name;
-    client.lpush('names', first_name + ' ' + last_name, (err, reply) => {
-        if (err) {
-            console.log(err);
-        }
-        console.log(reply);
-        res.redirect('/');
-    });
+  const nome = req.body.nome;
+  const sobrenome = req.body.sobrenome;
+  client.rpush('nomes', `${nome} ${sobrenome}`, (err, reply) => {
+    if (err) {
+      console.error(err);
+      return res.send('Ocorreu um erro ao armazenar os dados.');
+    }
+    console.log(`Nome ${nome} ${sobrenome} armazenado com sucesso.`);
+    res.send('Dados armazenados com sucesso!');
+  });
 });
 
-// Inicializa o servidor HTTP na porta 8080 e no endereço 0.0.0.0
-const server = app.listen(8080, '0.0.0.0', () => {
-    console.log(`Aplicativo rodando em http://${server.address().address}:${server.address().port}`);
+const PORT = 8080;
+const HOST = '0.0.0.0';
+
+app.listen(PORT, HOST, () => {
+  console.log(`Aplicação rodando em http://${HOST}:${PORT}`);
 });
