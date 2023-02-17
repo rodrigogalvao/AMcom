@@ -99,7 +99,47 @@ app.post('/', (req, res) => {
       return res.send('Ocorreu um erro ao armazenar os dados.');
     }
     console.log(`Nome ${nome} ${sobrenome} armazenado com sucesso.`);
-    res.send('Dados armazenados com sucesso!');
+    res.send(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Formulário</title>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+          <style>
+            /* ... */
+          </style>
+        </head>
+        <body>
+          <!-- ... -->
+
+          <script>
+            $(function() {
+              $('#modalSucesso').modal();
+            });
+          </script>
+
+          <div class="modal fade" id="modalSucesso" tabindex="-1" role="dialog" aria-labelledby="modalSucessoLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalSucessoLabel">Sucesso!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Dados armazenados com sucesso!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        </body>
+      </html>
+    `;
   });
 });
 
