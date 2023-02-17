@@ -13,84 +13,80 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
   res.send(`
   <!DOCTYPE html>
-<html>
-  <head>
-    <title>Formulário de Ativos Fixos</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-      body {
-        background-color: #f2f2f2;
-      }
-      h1 {
-        text-align: center;
-        margin-top: 50px;
-        color: #3b5998;
-        font-size: 48px;
-        font-weight: bold;
-      }
-      .container {
-        max-width: 600px;
-        margin: 0 auto;
-        background-color: #ffffff;
-        padding: 50px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-      label {
-        color: #3b5998;
-        font-weight: bold;
-      }
-      input {
-        border-radius: 10px;
-        border: none;
-        padding: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-      }
-      .btn-primary {
-        background-color: #3b5998;
-        border-color: #3b5998;
-        border-radius: 10px;
-        font-weight: bold;
-        width: 100%;
-        margin-top: 20px;
-      }
-      .btn-primary:hover {
-        background-color: #2d4373;
-        border-color: #2d4373;
-      }
-      .image-container {
-        text-align: center;
-        margin-bottom: 50px;
-      }
-      .image-container img {
-        max-width: 150px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="image-container">
+  <html>
+    <head>
+      <title>Formulário</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <style>
+        body {
+          background-color: #f2f2f2;
+        }
+        h1 {
+          text-align: center;
+          margin-top: 50px;
+          color: #3b5998;
+          font-size: 48px;
+          font-weight: bold;
+        }
+        .container {
+          max-width: 600px;
+          margin: 0 auto;
+          background-color: #ffffff;
+          padding: 50px;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+          color: #3b5998;
+          font-weight: bold;
+        }
+        input {
+          border-radius: 10px;
+          border: none;
+          padding: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          margin-bottom: 20px;
+        }
+        .btn-primary {
+          background-color: #3b5998;
+          border-color: #3b5998;
+          border-radius: 10px;
+          font-weight: bold;
+          width: 100%;
+          margin-top: 20px;
+        }
+        .btn-primary:hover {
+          background-color: #2d4373;
+          border-color: #2d4373;
+        }
+        .image-container {
+          text-align: center;
+          margin-bottom: 50px;
+        }
+        .image-container img {
+          max-width: 150px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="image-container">
+        </div>
+        <h1>Formulário</h1>
+        <form action="/" method="post">
+          <div class="form-group">
+            <label for="inputNome">Nome:</label>
+            <input type="text" class="form-control" id="inputNome" name="nome" placeholder="Digite seu nome">
+          </div>
+          <div class="form-group">
+            <label for="inputSobrenome">Sobrenome:</label>
+            <input type="text" class="form-control" id="inputSobrenome" name="sobrenome" placeholder="Digite seu sobrenome">
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
       </div>
-      <h1>Formulário de Ativos Fixos</h1>
-      <form action="/" method="post">
-        <div class="form-group">
-          <label for="inputNome">Nome do Ativo:</label>
-          <input type="text" class="form-control" id="inputNome" name="nome" placeholder="Digite o nome do ativo">
-        </div>
-        <div class="form-group">
-          <label for="inputDescricao">Descrição:</label>
-          <input type="text" class="form-control" id="inputDescricao" name="descricao" placeholder="Digite a descrição do ativo">
-        </div>
-        <div class="form-group">
-          <label for="inputValor">Valor:</label>
-          <input type="number" class="form-control" id="inputValor" name="valor" placeholder="Digite o valor do ativo">
-        </div>
-        <button type="submit" class="btn btn-primary">Enviar</button>
-      </form>
-    </div>
-  </body>
-</html>
+    </body>
+  </html>
   `);
 });
 
