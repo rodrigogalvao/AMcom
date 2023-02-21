@@ -23,13 +23,14 @@ pipeline {
         }
             
        
-        stage('Deploy'){
-            when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } } 
-                steps {
-            script{ 
-                 sh "kubectl rollout restart deployment/deploy-portalapp -n ${env.namespace}" 
-            }
+        stage('Deploy') {
+    when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } } 
+    steps {
+        input "Deploy to ${env.BRANCH_NAME}? (Requires Approval)"
+        script {
+            sh "kubectl rollout restart deployment/deploy-portalapp -n ${env.namespace}"
+               }
           }
-        } 
-      }
-}
+                        }
+               }
+           }
