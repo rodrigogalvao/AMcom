@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy') {
     when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } } 
     steps {
-        input "Efetuar Deploy em PRD? ${env.BRANCH_NAME}? (Requer Aprovação)"
+        input "Efetuar Deploy em ${env.BRANCH_NAME}? (Requer Aprovação)"
         script {
             sh "kubectl rollout restart deployment/deploy-portalapp -n ${env.namespace}"
                }
