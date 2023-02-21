@@ -72,7 +72,7 @@ app.get('/', (req, res) => {
       <div class="container">
         <div class="image-container">
         </div>
-        <h1>Formulário PRD VERSION 3.0 COM APROVAÇÃO</h1>
+        <h1>Formulário PRD VERSION 1.0</h1>
         <form action="/" method="post">
           <div class="form-group">
             <label for="inputNome">Nome:</label>
