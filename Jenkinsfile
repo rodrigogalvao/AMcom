@@ -27,14 +27,10 @@ pipeline {
             when { anyOf { branch 'DevAMcom'; branch 'HomAMcom'; branch "PrdAMcom"; } } 
                 steps {
             script{ 
-              withCredentials([string(credentialsId: 'piloto')]) {
-                 timeout(time: 24, unit: "HOURS") {
-                 input message: 'Deseja realizar o deploy?', ok: 'SIM', submitter: "piloto"
-                                } 
-                       }
                  sh "kubectl rollout restart deployment/deploy-portalapp -n ${env.namespace}"
-                 
-                 }
+                  
+            }
+          }
         } 
       }
 }
