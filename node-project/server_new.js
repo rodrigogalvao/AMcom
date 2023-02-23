@@ -15,16 +15,16 @@ app.get('/', (req, res) => {
   <!DOCTYPE html>
   <html>
     <head>
-      <title>Formulário HOM</title>
+      <title>Formulário DEV</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
       <style>
         body {
-          background-color: #f2f2f2;
+          background-color: #008000;
         }
         h1 {
           text-align: center;
           margin-top: 50px;
-          color: #3b5998;
+          color: #ffa500;
           font-size: 48px;
           font-weight: bold;
         }
@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         label {
-          color: #3b5998;
+          color: #ffa500;
           font-weight: bold;
         }
         input {
@@ -48,16 +48,16 @@ app.get('/', (req, res) => {
           margin-bottom: 20px;
         }
         .btn-primary {
-          background-color: #3b5998;
-          border-color: #3b5998;
+          background-color: #ffa500;
+          border-color: #ffa500;
           border-radius: 10px;
           font-weight: bold;
           width: 100%;
           margin-top: 20px;
         }
         .btn-primary:hover {
-          background-color: #2d4373;
-          border-color: #2d4373;
+          background-color: #ff8c00;
+          border-color: #ff8c00;
         }
         .image-container {
           text-align: center;
@@ -72,7 +72,7 @@ app.get('/', (req, res) => {
       <div class="container">
         <div class="image-container">
         </div>
-        <h1>Formulário HOM VERSION 1.0</h1>
+        <h1>Formulário HOM VERSION 2.0</h1>
         <form action="/" method="post">
           <div class="form-group">
             <label for="inputNome">Nome:</label>
